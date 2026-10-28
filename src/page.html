@@ -21,7 +21,7 @@ table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;p
 .big{display:flex;gap:14px;flex-wrap:wrap}.big div{flex:1;min-width:160px;background:var(--navy);border:1px solid var(--line);border-radius:10px;padding:14px}.big b{display:block;font-family:Georgia,serif;font-size:30px;font-weight:500;color:var(--cream)}.ok{color:#8fc79a}.bad{color:#d98f80}
 </style></head>
 <body><div class="wrap"><header><div class="tag">Project 12 · Agentic AI portfolio</div><h1>LoRA Fine-Tune: Before / After</h1>
-<p class="lead">A LoRA adapter trained on a laptop-class CPU teaches SmolLM2-135M-Instruct to label news headlines (World, Sports, Business, Sci/Tech). Every number below was measured on a held-out split the model never saw.</p></header>
+<p class="lead">A LoRA adapter trained on CPU only (no GPU) teaches SmolLM2-135M-Instruct to label news headlines (World, Sports, Business, Sci/Tech). Every number below was measured on a held-out split the model never saw.</p></header>
 <div class="card"><h2>Held-out accuracy</h2><div class="big" id="big"></div><div class="meta" id="note"></div></div>
 <div class="card"><h2>Per-class accuracy</h2><div id="pc"></div></div>
 <div class="card"><h2>Training run</h2><div id="tr"></div></div>
