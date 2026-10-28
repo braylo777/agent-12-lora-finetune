@@ -1,0 +1,64 @@
+{
+  "base": "HuggingFaceTB/SmolLM2-135M-Instruct",
+  "lora": {
+    "r": 8,
+    "alpha": 16,
+    "dropout": 0.05,
+    "targets": [
+      "k_proj",
+      "o_proj",
+      "q_proj",
+      "v_proj"
+    ]
+  },
+  "trainable_params": 921600,
+  "total_params": 135436608,
+  "train_examples": 2000,
+  "epochs": 1,
+  "batch_size": 8,
+  "lr": 0.0003,
+  "train_seconds": 1589.4,
+  "hardware": "box CPU (8 vCPU)",
+  "loss_log": [
+    {
+      "step": 25,
+      "loss": 0.5726
+    },
+    {
+      "step": 50,
+      "loss": 0.3277
+    },
+    {
+      "step": 75,
+      "loss": 0.2361
+    },
+    {
+      "step": 100,
+      "loss": 0.2675
+    },
+    {
+      "step": 125,
+      "loss": 0.0585
+    },
+    {
+      "step": 150,
+      "loss": 0.1545
+    },
+    {
+      "step": 175,
+      "loss": 0.1913
+    },
+    {
+      "step": 200,
+      "loss": 0.4582
+    },
+    {
+      "step": 225,
+      "loss": 0.5314
+    },
+    {
+      "step": 250,
+      "loss": 0.0625
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+name = "agent-12-lora-finetune"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+# No Workers AI binding: the demo serves measured results only.
+[[ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "1012"
+simple = { limit = 5, period = 60 }
+
+[[rules]]
+type = "Text"
+globs = ["**/*.html"]
+fallthrough = true
