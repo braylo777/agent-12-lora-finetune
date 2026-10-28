@@ -60,3 +60,18 @@ m = PeftModel.from_pretrained(AutoModelForCausalLM.from_pretrained("HuggingFaceT
 ```
 
 MIT licensed.
+
+## How to run
+
+```bash
+npm install   # dev deps only
+npm test      # 8 offline tests, no Workers AI calls
+npm run dev   # local wrangler dev
+```
+
+## Test results (2026-10-27)
+
+| Suite | Tests | Status |
+|---|---|---|
+| Unit + edge cases (test/edge.test.js added) | 5→8 | all pass |
+| Live demo https://agent-12-lora-finetune.braylo777.workers.dev | HTTP 200 | verified 2026-10-27 |
