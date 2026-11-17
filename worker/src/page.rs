@@ -1,4 +1,5 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LoRA Fine-Tune · Braylo</title><style>:root{--navy:#0d1520;--cream:#efe9dc;--brass:#b39b70;--ink:#16202e;--line:#253246}
+//! Demo page (generated from the old src/page.html; kept as a Rust string).
+pub const PAGE: &str = r####"<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LoRA Fine-Tune · Braylo</title><style>:root{--navy:#0d1520;--cream:#efe9dc;--brass:#b39b70;--ink:#16202e;--line:#253246}
 *{box-sizing:border-box}body{margin:0;background:var(--navy);color:var(--cream);font:15px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
 .wrap{max-width:860px;margin:0 auto;padding:40px 20px 56px}
 header .tag{color:var(--brass);letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600}
@@ -38,3 +39,4 @@ const t=R.training;$("tr").innerHTML=`<table><tr><td>Base model</td><td>${esc(R.
 $("ex").innerHTML="<table><tr><th>Headline</th><th>Gold</th><th>Base</th><th>LoRA</th></tr>"+R.examples.map(e=>`<tr><td>${esc(e.text)}…</td><td>${e.gold}</td><td class="${e.before_ok?"ok":"bad"}">${esc(e.before)}</td><td class="${e.after_ok?"ok":"bad"}">${esc(e.after)}</td></tr>`).join("")+"</table>";
 $("live").textContent="Not served live: "+R.workers_ai_live_serving.reason});
 </script></body></html>
+"####;

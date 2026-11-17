@@ -81,8 +81,8 @@
     "per_class_accuracy": {
       "World": 0.204,
       "Sports": 0.511,
-      "Business": 0,
-      "Sci/Tech": 0
+      "Business": 0.0,
+      "Sci/Tech": 0.0
     },
     "ms_per_example": 73.3
   },
@@ -94,7 +94,7 @@
     "unparseable": 0,
     "per_class_accuracy": {
       "World": 0.857,
-      "Sports": 1,
+      "Sports": 1.0,
       "Business": 0.82,
       "Sci/Tech": 0.889
     },

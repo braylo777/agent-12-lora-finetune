@@ -1,0 +1,8 @@
+name = "agent-12-lora-finetune"
+main = "build/worker/shim.mjs"
+compatibility_date = "2026-10-01"
+
+[build]
+command = "worker-build --release"
+
+# No Workers AI binding: the demo serves measured results only.

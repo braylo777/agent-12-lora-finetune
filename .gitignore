@@ -1,4 +1,8 @@
-node_modules/
-.wrangler/
-train.log
 __pycache__/
+.pytest_cache/
+target/
+build/
+.wrangler/
+.dev.vars
+*.pyc
+train.log

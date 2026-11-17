@@ -23,7 +23,7 @@ flowchart LR
   B --> E
   A --> E
   E --> R[evals/before.json · after.json]
-  R --> S[evals/summarize.mjs] --> W[Cloudflare Worker<br/>before/after results page]
+  R --> S[evals/summarize.py] --> W[Cloudflare Worker<br/>before/after results page]
 ```
 
 ## Eval results (measured Oct 27, 2026)
@@ -40,17 +40,18 @@ Training used 1 epoch of 250 steps at batch 8 and learning rate 3e-4, on the 8-v
 **Live serving:** not available on the free tier. Workers AI only loads LoRA adapters onto its own hosted base models, such as Gemma, Mistral and Llama, and SmolLM2-135M is not one of them. So the Worker serves the measured results, and `/api/predict` honestly returns 501.
 
 ## Tests
-- 5 Worker tests (`npm test`): both models are evaluated on the same split, accuracy matches correct/n, the delta matches, the LoRA config and loss curve are present, and the HTTP routes work, including the 501.
-- 4 Python tests (`python test/test_common.py`): label parsing and prompt integrity.
+- Python (`python3 -m pytest`, 8 tests): label parsing and prompt integrity, plus the measured results (both models on the same split, accuracy matches correct/n, the delta matches, the LoRA config and loss curve are present).
+- Rust (`cd worker && cargo test`, 2 test functions): the same consistency checks on the data the Worker serves, and the HTTP routes, including the honest 501 for live inference.
+- `evals/summarize.py` rebuilds the served results from the raw eval outputs and reproduces the old JavaScript-generated results exactly.
 
 ## Reproduce
 ```bash
 pip install torch --index-url https://download.pytorch.org/whl/cpu && pip install transformers peft datasets
-python train/evaluate.py > evals/before.json          # base model
-python train/evaluate_rank.py > evals/before_rank.json
-python train/train_lora.py                            # writes adapter/ and evals/train_log.json
-python train/evaluate.py adapter > evals/after.json
-node evals/summarize.mjs && npm test && node build.mjs
+python3 train/evaluate.py > evals/before.json          # base model
+python3 train/evaluate_rank.py > evals/before_rank.json
+python3 train/train_lora.py                            # writes adapter/ and evals/train_log.json
+python3 train/evaluate.py adapter > evals/after.json
+python3 evals/summarize.py && python3 -m pytest && (cd worker && cargo test)
 ```
 
 Load the adapter:
@@ -61,17 +62,4 @@ m = PeftModel.from_pretrained(AutoModelForCausalLM.from_pretrained("HuggingFaceT
 
 MIT licensed.
 
-## How to run
-
-```bash
-npm install   # dev deps only
-npm test      # 8 offline tests, no Workers AI calls
-npm run dev   # local wrangler dev
-```
-
-## Test results (2026-10-27)
-
-| Suite | Tests | Status |
-|---|---|---|
-| Unit + edge cases (test/edge.test.js added) | 5→8 | all pass |
-| Live demo https://agent-12-lora-finetune.braylo777.workers.dev | HTTP 200 | verified 2026-10-27 |
+The previous JavaScript version is on the `legacy-js` branch and the `pre-pycrust` tag. The Worker is Rust (`worker/`, build with `worker-build --release`, run with `wrangler dev`).
